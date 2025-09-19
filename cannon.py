@@ -20,11 +20,12 @@ targets = []
 
 def tap(x, y):
     """Respond to screen tap."""
+    """Se redujo el divisor para aumentar la velocidad del proyectil"""
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 200) / 10
+        speed.y = (y + 200) / 10
 
 
 def inside(xy):
@@ -54,11 +55,12 @@ def move():
         target = vector(200, y)
         targets.append(target)
 
+    """Se aumentó la velocidad de los balones"""
     for target in targets:
-        target.x -= 0.5
-
+        target.x -= 2
+    """Se aumentó la velocidad a la que cae el proyectil"""
     if inside(ball):
-        speed.y -= 0.35
+        speed.y -= 1.5
         ball.move(speed)
 
     dupe = targets.copy()
@@ -74,8 +76,8 @@ def move():
         if not inside(target):
             """Si alguno de los globos sale del borde, restablecer al borde derecho"""
             target.x = 200
-
-    ontimer(move, 50)
+    """Se redujeron los milisegundos entre cada actualización para mejorar la fluidez"""
+    ontimer(move, 30)
 
 
 setup(420, 420, 370, 0)

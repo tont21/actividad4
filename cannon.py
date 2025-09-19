@@ -72,7 +72,8 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            """Si alguno de los globos sale del borde, restablecer al borde derecho"""
+            target.x = 200
 
     ontimer(move, 50)
 
